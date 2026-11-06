@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Call Flow Tester - what a voice agent really costs per resolved call</title>
+<meta name="description" content="Test a simple voice-agent call flow without any voice or AI service: how many calls the bot solves, how many go to a person, how many hang up, and the cost per resolved call against a people-only team. Runs in the browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c2127'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,Roboto,sans-serif' font-size='15' font-weight='700' letter-spacing='-0.5' fill='%23fff'%3EDC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1c2127"/><text x="16" y="22" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="15" font-weight="700" letter-spacing="-0.5" fill="#fff">DC</text></svg>
+    <div>
+      <h1>Call Flow Tester</h1>
+      <p>Is a voice agent cheaper than a team? Test the flow before you build it.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="btn" id="reset" title="Back to the default setup">Reset</button>
+    <button class="btn" id="share" title="Copy a link to this exact setup">Copy link</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage card" aria-label="Where the calls end up">
+    <div class="stage-row">
+      <h3>1. Does the bot understand what the caller wants?</h3>
+      <div class="bar" id="bar1" role="img"></div>
+      <div class="keys" id="keys1"></div>
+    </div>
+    <div class="stage-row">
+      <h3>2. What happens next</h3>
+      <div class="bar" id="bar2" role="img"></div>
+      <div class="keys" id="keys2"></div>
+    </div>
+    <div class="stage-row">
+      <h3>3. How the calls end</h3>
+      <div class="bar" id="bar3" role="img"></div>
+      <div class="keys" id="keys3"></div>
+    </div>
+    <p class="takeaway" id="takeaway" aria-live="polite"></p>
+  </section>
+
+  <aside class="side">
+    <section class="card">
+      <h2>Scenes</h2>
+      <div class="chips" id="scenes"></div>
+    </section>
+    <section class="card">
+      <h2>Cost per resolved call</h2>
+      <div class="kpis" id="kpis"></div>
+    </section>
+  </aside>
+</main>
+
+<section class="wide card">
+  <h2>Intent by intent</h2>
+  <p class="muted small">Edit the mix, how often the bot solves each kind of call, and how long a call takes. Untick "Bot" to send that kind of call straight to a person.</p>
+  <div class="table-scroll"><table class="flowtable" id="intents"></table></div>
+  <p class="muted small">Break-even is the lowest solve rate at which the bot costs no more per resolved call than a person. "Always" means it wins even at 0%, "never" means it loses even at 100%.</p>
+</section>
+
+<section class="wide card">
+  <h2>Knobs</h2>
+  <div class="params" id="params"></div>
+</section>
+
+<section class="wide card">
+  <h2>Ten calls, one at a time</h2>
+  <button class="btn" id="roll">Roll new calls</button>
+  <div class="calls" id="calls"></div>
+</section>
+
+<section class="wide card about">
+  <h2>How it works</h2>
+  <div class="cols">
+    <div>
+      <p>Hey! I built this because "just put a voice agent on the phones" sounds simple and the math is not. A bot that solves most calls is great. A bot that solves a few and annoys the rest can cost more than it saves.</p>
+      <p>There is no voice, no speech recognition and no AI model in here, and nothing to pay for. Every step of the flow is a probability you set, so you can see which ones move the cost and which ones barely matter.</p>
+      <p>It's a small experiment with made-up numbers, not a forecast for any real company or product.</p>
+    </div>
+    <div>
+      <p><strong>The flow.</strong> The bot asks what the caller wants. If it does not understand, it tries again (up to the retry limit), then passes the caller to a person. If it understands, it solves the call or it does not. When it does not, callers either ask for a person (with the bot's notes, so the person is faster) or hang up. A few "solved" calls were not really solved, so the caller phones again and reaches a person.</p>
+      <p><strong>Cost per resolved call.</strong> Bot minutes times the bot price, plus person minutes times the person price, plus a fixed cost for every call that ends unresolved, divided by the calls that actually ended resolved. Hang-ups cost money and resolve nothing.</p>
+      <p><strong>People-only.</strong> The same calls, answered by a person from the start, who resolves the share you set.</p>
+      <p><strong>Not covered.</strong> Waiting in a queue, peak hours, caller mood, repeat callers beyond the one above, setup and build costs, and anything about how a real speech system sounds.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>By <a href="https://github.com/dmcataneo" rel="author">dmcataneo</a> · <a href="https://github.com/dmcataneo/voice-agent-flow-tester">Source code</a></p>
+  <p>Everything is calculated in your browser with made-up numbers. Nothing is uploaded.</p>
+</footer>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
