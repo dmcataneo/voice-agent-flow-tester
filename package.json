@@ -1,0 +1,7 @@
+{
+  "name": "voice-agent-flow-tester",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test a simple voice-agent call flow with made-up probabilities: cost per resolved call, hand-offs, hang-ups and break-even. Runs in the browser.",
+  "scripts": { "test": "node --test core.test.js", "start": "python3 -m http.server 8000" }
+}
