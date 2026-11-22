@@ -1,10 +1,14 @@
 # Call Flow Tester
 
-Hey! I built this because "just put a voice agent on the phones" sounds simple and the math is not. A bot that solves most calls is great. A bot that solves a few and annoys the rest can cost more than it saves.
+> A toy for testing voice agent call flows. Not a product.
+>
+> **Type:** side project, for fun · **Stack:** plain HTML and JS, no dependencies · **Author:** an operations person, not a developer. I build these at night, next to my day job. Nothing very serious.
 
-There is no voice, no speech recognition and no AI model in here, and nothing to pay for. Every step of the flow is a probability you set, so you can see which ones move the cost and which ones barely matter.
+"Just put a voice agent on the phones" sounds easy. The math isn't. A bot that solves most calls is great, but one that solves a few and annoys everyone else can cost more than the team it replaced.
 
-It's a small experiment with made-up numbers, not a forecast for any real company or product.
+I made this to test call flows before they reach real callers, the same way I work on the voice agent I built at work (the code for that one stays private). There is no voice, no speech recognition and no AI model in here. Every step of the flow is a probability you set, so you can see which ones move the cost and which barely matter.
+
+The numbers are made up. It is not a forecast for any company or product.
 
 It runs in the browser. There is nothing to install: open `index.html`, or serve the folder with any static file server.
 
