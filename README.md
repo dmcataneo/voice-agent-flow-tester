@@ -2,7 +2,7 @@
 
 > A toy for testing voice agent call flows. Not a product.
 >
-> **Type:** side project, for fun · **Stack:** plain HTML and JS, no dependencies · **Author:** an operations person, not a developer. I build these at night, next to my day job. Nothing very serious.
+> **Type:** side project, for fun · **Stack:** plain HTML and JS, no dependencies · **Author:** an operations person, not a developer. I build these in my free time, next to my day job. Nothing very serious.
 
 "Just put a voice agent on the phones" sounds easy. The math isn't. A bot that solves most calls is great, but one that solves a few and annoys everyone else can cost more than the team it replaced.
 
